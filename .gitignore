@@ -1,2 +1,16 @@
+# Providers
 .terraform
+
+# Env
 *.tfvars
+
+# Terraform State
+*.tfstate
+*.tfstate.*backup
+
+# Terraform CLI configuration files
+.terraformrc
+terraform.rc
+
+# Saved plan files
+*.tfplan
