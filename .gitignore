@@ -8,9 +8,8 @@
 *.tfstate
 *.tfstate.*backup
 
-# Terraform CLI configuration files
-.terraformrc
-terraform.rc
-
 # Saved plan files
-*.tfplan
+*tfplan*
+
+# kubeconfig file
+kubeconfig
