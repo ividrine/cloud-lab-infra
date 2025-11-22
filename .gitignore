@@ -13,3 +13,6 @@
 
 # kubeconfig file
 kubeconfig
+
+# Packer env
+*.pkrvars.hcl
