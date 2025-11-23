@@ -3,6 +3,7 @@
 
 # Env
 *.tfvars
+!example.tfvars
 
 # Terraform State
 *.tfstate
