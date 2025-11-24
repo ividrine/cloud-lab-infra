@@ -1,3 +1,3 @@
 # cloud-lab-infra
 
-Provisons base infrastructure for cloud lab platform
+Provisons base infrastructure for the cloud lab platform
