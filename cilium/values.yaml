@@ -1,0 +1,10 @@
+kubeProxyReplacement: true
+gatewayAPI:
+ enabled: true
+loadBalancer:
+ acceleration: "best-effort"
+cgroup:
+ hostRoot:
+
+hubble:
+ enabled: true
