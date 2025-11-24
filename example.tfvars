@@ -1,0 +1,5 @@
+hcloud_token = "example-hcloud-token"
+tailscale_authkey = "example-tailscale-authkey"
+github_token = "example-github-token"
+github_org = "example-github-org"
+github_repository = "example-github-repository"
