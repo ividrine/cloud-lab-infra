@@ -1,3 +1,4 @@
+# https://docs.siderolabs.com/talos/v1.11/platform-specific-installations/cloud-platforms/hetzner
 
 packer {
   required_plugins {
@@ -9,21 +10,21 @@ packer {
 }
 
 locals {
-  image = "https://factory.talos.dev/image/4a0d65c669d46663f377e7161e50cfd570c401f26fd9e7bda34a0216b6f1922b/${var.talos_version}/hcloud-amd64.raw.xz"
+  image = "https://factory.talos.dev/image/${var.schematic_id}/${var.talos_version}/hcloud-${var.server_arch}.raw.xz"
 }
 
 source "hcloud" "talos" {
   rescue = "linux64"
   image = "debian-11"
-  location = "fsn1"
-  server_type = "cx23"
+  location = var.server_location
+  server_type = var.server_type
   ssh_username = "root"
-  snapshot_name = "Talos System Disk / x86 / ${var.talos_version}"
+  snapshot_name = "Talos System Disk / ${var.server_arch} / ${var.talos_version}"
   snapshot_labels = {
     type = "infra",
     os = "talos",
-    version = "${var.talos_version}",
-    arch = "x86",
+    version = var.talos_version,
+    arch = var.server_arch,
   }
 }
 
