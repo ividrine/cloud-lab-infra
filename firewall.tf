@@ -10,16 +10,16 @@ resource "hcloud_firewall" "firewall" {
   name = var.cluster_name
 
   rule {
-    direction = "in"
-    protocol = "tcp"
-    port = "50000"
+    direction  = "in"
+    protocol   = "tcp"
+    port       = "50000"
     source_ips = [local.source_ip]
   }
 
   rule {
-    direction = "in"
-    protocol = "tcp"
-    port = "6443"
+    direction  = "in"
+    protocol   = "tcp"
+    port       = "6443"
     source_ips = [local.source_ip]
   }
 }

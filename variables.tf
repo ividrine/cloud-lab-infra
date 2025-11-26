@@ -1,64 +1,70 @@
 # General
 
 variable "cluster_name" {
-  type = string
+  type    = string
   default = "cloud-lab"
+}
+
+# Local DNS
+
+variable "cluster_domain" {
+  type    = string
+  default = "kube.cloud-lab.local"
 }
 
 # Secrets
 
 variable "hcloud_token" {
-  type = string
+  type      = string
   sensitive = true
 }
 
 variable "tailscale_authkey" {
-  type = string
+  type      = string
   sensitive = true
 }
 
-variable "github_token" {
-  type = string
-  sensitive = true
+# Networking
+
+variable "network_ipv4_cidr" {
+  type    = string
+  default = null
 }
 
-# Network
-
-variable "network_ip_range" {
-  type = string
-  default = "10.0.0.0/16"
+variable "node_subnet_zone" {
+  type    = string
+  default = null
 }
 
-variable "subnet_ip_range" {
-  type = string
-  default = "10.0.1.0/24"
+variable "node_subnet_ipv4_cidr" {
+  type    = string
+  default = null
 }
 
-variable "subnet_zone" {
-  type = string
-  default = "eu-central"
+variable "pod_ipv4_cidr" {
+  type    = string
+  default = null
 }
 
-# Machine
-
-variable "server_type" {
-  type = string
-  # x86 4gb ram 2vcpu
-  default = "cx23"  
+variable "service_ipv4_cidr" {
+  type    = string
+  default = null
 }
 
-variable "server_location" {
-  type = string
-  default = "fsn1"
+# Servers
+
+variable "control_plane" {
+  type = object({
+    location    = string
+    server_type = string
+    count       = number
+  })
 }
 
-variable "worker_count" {
-  type = number
-  default = 2
+variable "worker" {
+  type = object({
+    location    = string
+    server_type = string
+    count       = number
+  })
 }
-
-variable "control_plane_internal_ip" {
-  type = string
-  default = "10.0.1.1"
-}
-
