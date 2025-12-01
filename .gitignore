@@ -12,8 +12,5 @@
 # Saved plan files
 *tfplan*
 
-# kubeconfig file
-kubeconfig
-
 # Packer env
 *.pkrvars.hcl
