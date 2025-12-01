@@ -1,7 +1,8 @@
 # Secrets 
 
 hcloud_token      = "example-hcloud-token"
-tailscale_authkey = "example-tailscale-authkey"
+tailscale_api_key = "example-tailscale-authkey"
+tailscale_tailnet = "example-tailnet-id"
 
 # Machine
 
