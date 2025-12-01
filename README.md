@@ -6,11 +6,11 @@ Platform for running my personal applications / websites in kubernetes.
 
 This project bootstraps kubernetes in Hetzner Cloud using Talos Linux. It creates Tailscale tags and ACLs needed for secure access to kube API server from devices on the tailnet. It also installs a number of different components on the cluster:
 
-- API Gateway CRDs
-- Cilium (CNI, Gateway API Controller)
-- Tailscale Operator (expose kube api server on the tailnet)
-- HCloud CCM (native routing with cilium)
-- Talos CCM (automatic CSR approval)
+- [Gateway API](https://gateway-api.sigs.k8s.io/) CRDs (Custom Resource Definition)
+- [Cilium](https://cilium.io/) - CNI (Container Network Interface) and Gateway API Controller
+- [Tailscale Operator](https://tailscale.com/kb/1236/kubernetes-operator) - expose kube api server on the tailnet
+- [HCloud CCM (Cloud Controller Manager)](https://github.com/hetznercloud/hcloud-cloud-controller-manager) - native routing with cilium
+- [Talos CCM (Cloud Controller Manager)](https://github.com/siderolabs/talos-cloud-controller-manager) - automatic CSR approval
 
 ## Prerequisites
 
