@@ -6,7 +6,7 @@ locals {
   source_ip = "${chomp(data.http.source_ip.response_body)}/32"
 }
 
-resource "hcloud_firewall" "firewall" {
+resource "hcloud_firewall" "this" {
   name = var.cluster_name
 
   rule {

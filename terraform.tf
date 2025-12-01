@@ -12,9 +12,13 @@ terraform {
       source  = "hashicorp/http"
       version = "3.5.0"
     }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "3.1.1"
+    }
+    tailscale = {
+      source  = "tailscale/tailscale"
+      version = "0.24.0"
+    }
   }
-}
-
-provider "hcloud" {
-  token = var.hcloud_token
 }

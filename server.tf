@@ -8,7 +8,6 @@ locals {
 
   control_planes = [
     for i in range(var.control_plane.count) : {
-      index       = i
       name        = "${var.cluster_name}-control-plane-${i}"
       server_type = var.control_plane.server_type
       location    = var.control_plane.location
@@ -17,7 +16,6 @@ locals {
 
   workers = [
     for i in range(var.worker.count) : {
-      index       = i
       name        = "${var.cluster_name}-worker-${i}"
       server_type = var.worker.server_type
       location    = var.worker.location
@@ -31,24 +29,21 @@ resource "hcloud_server" "control_plane" {
   image        = data.hcloud_image.x86.id
   server_type  = each.value.server_type
   location     = each.value.location
-  firewall_ids = [hcloud_firewall.firewall.id]
-  user_data    = data.talos_machine_configuration.control_plane[each.value.name].machine_configuration
+  firewall_ids = [hcloud_firewall.this.id]
 
   network {
-    network_id = hcloud_network.cloud_network.id
+    network_id = hcloud_network.this.id
   }
+
+  depends_on = [hcloud_network_subnet.node]
 
   lifecycle {
     ignore_changes = [
       user_data,
-      image
+      image,
+      network
     ]
   }
-
-  depends_on = [
-    hcloud_network_subnet.node_subnet,
-    data.talos_machine_configuration.control_plane
-  ]
 }
 
 resource "hcloud_server" "worker" {
@@ -57,22 +52,19 @@ resource "hcloud_server" "worker" {
   image        = data.hcloud_image.x86.id
   server_type  = each.value.server_type
   location     = each.value.location
-  firewall_ids = [hcloud_firewall.firewall.id]
-  user_data    = data.talos_machine_configuration.worker[each.value.name].machine_configuration
+  firewall_ids = [hcloud_firewall.this.id]
 
   network {
-    network_id = hcloud_network.cloud_network.id
+    network_id = hcloud_network.this.id
   }
+
+  depends_on = [hcloud_network_subnet.node]
 
   lifecycle {
     ignore_changes = [
       user_data,
-      image
+      image,
+      network
     ]
   }
-
-  depends_on = [
-    hcloud_network_subnet.node_subnet,
-    data.talos_machine_configuration.worker
-  ]
 }
