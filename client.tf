@@ -25,21 +25,4 @@ locals {
   )
 
   talosconfig = data.talos_client_configuration.this.talos_config
-
-  # Used for other providers
-  kubeconfig_data = {
-    name = var.cluster_name
-    host = local.kube_api_url_external
-    ca   = base64decode(talos_cluster_kubeconfig.this.kubernetes_client_configuration.ca_certificate)
-    cert = base64decode(talos_cluster_kubeconfig.this.kubernetes_client_configuration.client_certificate)
-    key  = base64decode(talos_cluster_kubeconfig.this.kubernetes_client_configuration.client_key)
-  }
-
-  talosconfig_data = {
-    name      = data.talos_client_configuration.this.cluster_name
-    endpoints = data.talos_client_configuration.this.endpoints
-    ca        = base64decode(data.talos_client_configuration.this.client_configuration.ca_certificate)
-    cert      = base64decode(data.talos_client_configuration.this.client_configuration.client_certificate)
-    key       = base64decode(data.talos_client_configuration.this.client_configuration.client_key)
-  }
 }

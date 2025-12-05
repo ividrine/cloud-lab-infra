@@ -1,15 +1,8 @@
-# General
+# Cluster Info
 
 variable "cluster_name" {
   type    = string
   default = "cloud-lab"
-}
-
-# Local DNS
-
-variable "cluster_domain" {
-  type    = string
-  default = "cloud-lab.local"
 }
 
 # Secrets
@@ -80,7 +73,7 @@ variable "worker" {
   })
 }
 
-# Talos Configuration 
+# Talos
 # https://docs.siderolabs.com/talos/v1.11/configure-your-talos-cluster/system-configuration/editing-machine-configuration
 
 variable "talos_machine_configuration_apply_mode" {
@@ -100,6 +93,7 @@ variable "talos_ccm_version" {
   type    = string
   default = "v0.14.0"
 }
+
 
 variable "kubernetes_version" {
   type    = string

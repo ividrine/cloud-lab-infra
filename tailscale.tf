@@ -1,7 +1,6 @@
 
 locals {
   operator_tag = "tag:k8s-operator"
-  reader_tag   = "tag:k8s-readers"
   service_tag  = "tag:k8s-service"
   admin_group  = "autogroup:admin"
 }
@@ -17,8 +16,7 @@ resource "tailscale_acl" "this" {
     // Define the tags / tag owners
     "tagOwners" : {
       "${local.operator_tag}" : [],
-      "${local.service_tag}" : ["${local.operator_tag}"],
-      "${local.reader_tag}" : [],
+      "${local.service_tag}" : ["${local.operator_tag}"]
     },
 
     // Define auto approvers for tags

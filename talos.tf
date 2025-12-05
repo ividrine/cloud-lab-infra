@@ -3,10 +3,12 @@
 
 locals {
 
+  cluster_domain = "cluster.local"
+
   talos_primary_endpoint          = local.control_plane_public_ipv4_list[0]
   talos_primary_node_private_ipv4 = local.control_plane_private_ipv4_list[0]
 
-  kube_api_url_internal = "https://${var.cluster_domain}:6443"
+  kube_api_url_internal = "https://${local.cluster_domain}:6443"
   kube_api_url_external = "https://${local.talos_primary_endpoint}:6443"
 
   kube_prism_host = "127.0.0.1"
@@ -17,13 +19,13 @@ locals {
     local.hcloud_ccm_manifest,
     local.gateway_api_manifest,
     local.cilium_manifest,
-    local.tailscale_manifest,
+    local.tailscale_manifest
   ]
 
   talos_manifests = ["https://raw.githubusercontent.com/siderolabs/talos-cloud-controller-manager/main/docs/deploy/cloud-controller-manager.yml"]
 
   cluster_network = {
-    dnsDomain      = var.cluster_domain
+    dnsDomain      = local.cluster_domain
     podSubnets     = [var.pod_ipv4_cidr]
     serviceSubnets = [var.service_ipv4_cidr]
     cni            = { name = "none" }
@@ -41,7 +43,7 @@ locals {
   extra_host_entries = [
     {
       ip      = local.control_plane_private_vip_ipv4
-      aliases = [var.cluster_domain]
+      aliases = [local.cluster_domain]
     }
   ]
 
@@ -60,7 +62,7 @@ locals {
           [local.control_plane_private_vip_ipv4],
           local.control_plane_private_ipv4_list,
           local.control_plane_public_ipv4_list,
-          [var.cluster_domain],
+          [local.cluster_domain],
           ["127.0.0.1", "::1", "localhost"],
         )
       )
